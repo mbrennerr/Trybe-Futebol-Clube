@@ -6,6 +6,11 @@ export default class Teams extends Model implements ITeams {
   teamName: string;
 
   id: number;
+
+  public static async getAll(): Promise<ITeams[]> {
+    const result: ITeams[] = await Teams.findAll();
+    return result;
+  }
 }
 
 Teams.init(
