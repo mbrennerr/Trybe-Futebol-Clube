@@ -8,11 +8,10 @@ export default class Teams extends Model implements ITeams {
   id: number;
 
   public static async getAll(): Promise<ITeams[]> {
-    const result: ITeams[] = await Teams.findAll();
+    const result:Teams[] = await Teams.findAll();
     return result;
   }
 }
-
 Teams.init(
   {
     id: {
