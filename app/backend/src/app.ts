@@ -1,4 +1,5 @@
 import * as express from 'express';
+import Teams from './database/models/teams';
 
 class App {
   public app: express.Express;
@@ -6,6 +7,7 @@ class App {
 
   constructor() {
     // ...
+    this.app = express(); // app must build before config;
     this.config();
     // ...
   }
@@ -19,12 +21,17 @@ class App {
     };
 
     this.app.use(accessControl);
+    this.app.get('/teams', async (_req, res) => {
+      res.status(200).json(await Teams.getAll());
+    });
     // ...
   }
 
   // ...
   public start(PORT: string | number):void {
-    // ...
+    this.app.listen(PORT, () => {
+      console.log(`listening behind the door ${PORT}`);
+    });
   }
 }
 
