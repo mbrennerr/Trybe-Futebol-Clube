@@ -18,6 +18,8 @@ services:
   backend:
     build: ./backend
     container_name: app_backend
+    links:
+      - db
     depends_on:
       db:
         condition: service_healthy
