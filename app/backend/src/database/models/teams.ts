@@ -6,8 +6,6 @@ export default class Teams extends Model implements ITeams {
   teamName: string;
 
   id: number;
-
-  team_name:string;
 }
 
 Teams.init(
@@ -24,8 +22,10 @@ Teams.init(
     },
   },
   {
+    underscored: true,
     sequelize: db,
     modelName: 'teams',
     timestamps: false,
   },
 );
+// underscored turns snake case on calmecase;
