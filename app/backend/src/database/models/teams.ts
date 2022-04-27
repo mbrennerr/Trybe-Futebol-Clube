@@ -1,11 +1,11 @@
 import { Model, INTEGER, STRING } from 'sequelize';
 import db from '.';
-import ITeams from '../../Types/ITeams';
+import { ITeams } from '../../Types';
 
 export default class Teams extends Model implements ITeams {
-  teamName: string;
+  public teamName: string;
 
-  id: number;
+  public id: number;
 
   public static async getAll(): Promise<ITeams[]> {
     const result:Teams[] = await Teams.findAll();
@@ -26,9 +26,9 @@ Teams.init(
     },
   },
   {
-    underscored: true,
     sequelize: db,
     modelName: 'teams',
+    underscored: true,
     timestamps: false,
   },
 );
