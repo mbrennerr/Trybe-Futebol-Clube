@@ -20,7 +20,7 @@ Teams.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    team_name: {
+    teamName: {
       type: STRING(20),
       allowNull: false,
     },
