@@ -19,7 +19,7 @@ Users.init(
     id: {
       type: INTEGER,
       allowNull: false,
-      primaryKey: false,
+      primaryKey: true,
       autoIncrement: true,
     },
     username: {
