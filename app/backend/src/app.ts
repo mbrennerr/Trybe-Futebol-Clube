@@ -1,5 +1,6 @@
 import * as express from 'express';
 import Teams from './database/models/teams';
+import ErrorMiddleware from './middlewares/ErrorMiddleware';
 import LoginRoute from './routes/LoginRoute';
 
 class App {
@@ -27,7 +28,8 @@ class App {
     this.app.get('/teams', async (_req, res) => {
       res.status(200).json(await Teams.getAll());
     });
-    // ...
+
+    this.app.use(ErrorMiddleware);
   }
 
   // ...
