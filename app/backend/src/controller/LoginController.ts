@@ -12,6 +12,6 @@ export default class LoginController {
   public getByEmail = async (req:Request, res:Response) => {
     const { email, password }:ILogin = req.body;
     const user = await this.loginService.findUserByEmail(email, password);
-    return res.status(201).json(user);
+    return res.status(200).json(user);
   };
 }
