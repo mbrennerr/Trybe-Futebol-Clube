@@ -3,6 +3,7 @@ import IMatches from './IMatches';
 import IUsers from './IUsers';
 import IErrorMap from './IErrorMap';
 import ILogin from './ILogin';
+import IToken from './IToken';
 
 export {
   ITeams,
@@ -10,4 +11,5 @@ export {
   IUsers,
   IErrorMap,
   ILogin,
+  IToken,
 };
