@@ -11,7 +11,7 @@ export default class Schemas {
           'any.required': EmailMsg.requiredField,
           'string.email': EmailMsg.incorrectEmail,
           'string.base': EmailMsg.incorrectEmail,
-          // 'string.min':
+          'string.empty': EmailMsg.requiredField,
         }),
       password: Joi
         .string().not().empty().required()
