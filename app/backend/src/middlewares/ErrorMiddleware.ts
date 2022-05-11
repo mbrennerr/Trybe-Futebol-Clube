@@ -4,7 +4,7 @@ import { IErrorMap } from '../Types';
 export const ErrorMap:IErrorMap = {
   badRequest: 400,
   notFound: 404,
-  invalidInput: 422,
+  invalidInput: 401,
   conflict: 409,
 };
 
