@@ -13,7 +13,7 @@ export default (err:Error, _req:Request, res:Response, _next:NextFunction) => {
   const status:number = ErrorMap[name];
   console.log('middleware', name);
   if (!status) {
-    return res.status(500).json({ error: 'Server error' });
+    return res.status(500).json({ message: 'Server error' });
   }
-  res.status(status).json({ error: err.message });
+  res.status(status).json({ message: err.message });
 };
