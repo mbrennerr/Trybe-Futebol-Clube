@@ -15,6 +15,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 # Sumário
 
 - [Boas vindas ao repositório do TFC - Trybe Futebol Clube! ⚽️](#boas-vindas-ao-repositório-do-tfc---trybe-futebol-clube-️)
+- [Sumário](#sumário)
 - [Habilidades](#habilidades)
 - [Entregáveis](#entregáveis)
   - [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
@@ -27,9 +28,11 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
   - [Linter](#linter)
 - [Requisitos do projeto:](#requisitos-do-projeto)
   - [Antes de começar:](#antes-de-começar)
+    - [⚠️ **Utilize o `node` na versão 16** ⚠️](#️-utilize-o-node-na-versão-16-️)
     - [⚠️ Leia-os atentamente e siga à risca o que for pedido. ⚠️](#️-leia-os-atentamente-e-siga-à-risca-o-que-for-pedido-️)
     - [👀 Observações importantes:](#-observações-importantes)
       - [⚠️ **Inicie seu `docker-compose` antes de testar localmente!** ⚠️](#️-inicie-seu-docker-compose-antes-de-testar-localmente-️)
+      - [⚠️ Variáveis](#️-variáveis)
       - [Variáveis de ambiente](#variáveis-de-ambiente)
       - [Variáveis:](#variáveis)
       - [Chave JWT e criptografia de senhas:](#chave-jwt-e-criptografia-de-senhas)
@@ -79,7 +82,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
       - [28 - Desenvolva o endpoint `/matches/:id` de forma que seja possível finalizar partidas em andamento](#28---desenvolva-o-endpoint-matchesid-de-forma-que-seja-possível-finalizar-partidas-em-andamento)
   - [Leaderboards](#leaderboards)
     - [Leaderboard Home](#leaderboard-home)
-      - [29 - Desenvolva o endpoint `/leaderboard/home` de forma que seja possível filtrar a classificações dos times quando mandantes na tela de classificação do frontend com os dados iniciais do banco de dados](#29---desenvolva-o-endpoint-leaderboardhome-de-forma-que-seja-possível-filtrar-a-classificações-dos-times-quando-mandantes-na-tela-de-classificação-do-frontend-com-os-dados-iniciais-do-banco-de-dados)
+      - [29 - Desenvolva o endpoint `/leaderboard/home` de forma que seja possível filtrar a classificações dos times, quando mandantes, na tela de classificação do frontend com os dados iniciais do banco de dados](#29---desenvolva-o-endpoint-leaderboardhome-de-forma-que-seja-possível-filtrar-a-classificações-dos-times-quando-mandantes-na-tela-de-classificação-do-frontend-com-os-dados-iniciais-do-banco-de-dados)
       - [30 - Desenvolva o endpoint `/leaderboard/home`, de forma que seja possível filtrar a classificações dos times quando mandantes na tela de classificação do front-end e ao inserir a partida Corinthians 2 X 1 Internacional a tabela será atualizada](#30---desenvolva-o-endpoint-leaderboardhome-de-forma-que-seja-possível-filtrar-a-classificações-dos-times-quando-mandantes-na-tela-de-classificação-do-front-end-e-ao-inserir-a-partida-corinthians-2-x-1-internacional-a-tabela-será-atualizada)
     - [Leaderboard away](#leaderboard-away)
       - [31 - Desenvolva o endpoint `/leaderboard/away`, de forma que seja possível filtrar as classificações dos times  na tela de classificação do front-end, com os dados iniciais do banco de dados](#31---desenvolva-o-endpoint-leaderboardaway-de-forma-que-seja-possível-filtrar-as-classificações-dos-times--na-tela-de-classificação-do-front-end-com-os-dados-iniciais-do-banco-de-dados)
