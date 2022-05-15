@@ -18,6 +18,7 @@ export default class Schemas {
         .messages({
           'any.required': PswMsg.requiredField,
           'string.base': PswMsg.incorrectPsw,
+          'string.empty': PswMsg.requiredField,
 
         }),
     });
