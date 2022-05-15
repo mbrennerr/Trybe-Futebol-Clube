@@ -18,6 +18,8 @@ services:
   backend:
     build: ./backend
     container_name: app_backend
+    ports:
+      - 3001:3001
     links:
       - db
     depends_on:
