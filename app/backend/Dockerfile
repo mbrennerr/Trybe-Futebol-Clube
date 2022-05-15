@@ -4,6 +4,6 @@
  RUN ["npm", "install"]
 
  COPY . .
- CMD ["npm", "run", "start"]
  EXPOSE 3001
+ CMD ["npm", "run", "start"]
 
