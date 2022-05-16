@@ -18,7 +18,7 @@ export default class Token {
 
   public static async verifyToken(token:string) {
     const data = verify(token, this.JWT_SECRET, this.JWT_OPTIONS);
-    if (typeof data === 'string') throw new Error('Token expired');
+    if (typeof data === 'string') throw new Error(data);
 
     return data;
   }

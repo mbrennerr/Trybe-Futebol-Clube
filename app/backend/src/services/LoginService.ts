@@ -1,9 +1,9 @@
 import * as bcryptjs from 'bcryptjs';
 import Users from '../database/models/Users';
-import Token from '../Utils';
+import { Token } from '../Utils';
 
 export default class LoginService {
-  private token = Token.Token;
+  private token = Token;
 
   private usersModel;
 
