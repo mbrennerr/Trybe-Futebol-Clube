@@ -6,6 +6,8 @@ export const ErrorMap:IErrorMap = {
   notFound: 404,
   invalidInput: 401,
   conflict: 409,
+  TokenExpiredError: 401,
+
 };
 
 export default (err:Error, _req:Request, res:Response, _next:NextFunction) => {
