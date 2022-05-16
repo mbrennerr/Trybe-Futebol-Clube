@@ -13,7 +13,7 @@ export default class Validate {
 
       return next();
     } catch (error) {
-      console.error('Validate', error);
+      console.error('Validate.Login', error);
       next(error);
     }
   }
@@ -36,15 +36,18 @@ export default class Validate {
 
   private static async validation(schema:ObjectSchema, body:unknown) {
     const { error } = await schema.validate(body);
+
     if (error) {
       // const [{type, message}] = error.details;
       // const {type,message} = error.details[0];
       const errorType = error.details[0].type;
       const errorMessage = error.details[0].message;
-      const badRequest = { name: 'badRequest', message: errorMessage };
+      const unauthorized = { name: 'Unauthorized', message: errorMessage };
       const invalidInput = { name: 'invalidInput', message: errorMessage };
-      // console.log('validation', error);
-      if (errorType === 'any.required') throw (badRequest as unknown);
+      console.log('validate.validation', error);
+      if (errorType === 'any.required' || errorType === 'string.empty') {
+        throw (unauthorized as unknown);
+      }
 
       throw (invalidInput as unknown);
     }
