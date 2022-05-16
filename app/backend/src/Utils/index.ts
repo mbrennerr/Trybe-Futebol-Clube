@@ -1,3 +1,8 @@
 import Token from './Token';
+import { EmailMsg, PswMsg } from './Messages';
 
-export default { Token };
+export {
+  Token,
+  EmailMsg,
+  PswMsg,
+};

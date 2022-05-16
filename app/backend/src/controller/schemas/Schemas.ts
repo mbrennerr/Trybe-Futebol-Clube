@@ -1,5 +1,5 @@
 import * as Joi from 'joi';
-import { EmailMsg, PswMsg } from '../../Utils/Messages';
+import { EmailMsg, PswMsg } from '../../Utils';
 
 export default class Schemas {
   public static get Login() {

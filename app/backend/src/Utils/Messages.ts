@@ -7,6 +7,7 @@ enum PswMsg{
   incorrectPsw = 'Incorrect email or password',
 }
 
-export { EmailMsg,
+export {
+  EmailMsg,
   PswMsg,
 };
