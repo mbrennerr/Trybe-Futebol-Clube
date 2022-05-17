@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import MatchesService from '../../services/MatchesService';
+import MatchesService from '../services/MatchesService';
 
 export default class MatchesController {
   private matchesService;
