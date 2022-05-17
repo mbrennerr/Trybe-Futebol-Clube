@@ -1,7 +1,7 @@
 import * as express from 'express';
-import Teams from './database/models/teams';
 import ErrorMiddleware from './middlewares/ErrorMiddleware';
 import LoginRoute from './routes/LoginRoute';
+import TeamsRoute from './routes/TeamsRoute';
 
 class App {
   public app: express.Express;
@@ -25,9 +25,10 @@ class App {
     this.app.use(accessControl);
     this.app.use(express.json());
     this.app.use(LoginRoute);
-    this.app.get('/teams', async (_req, res) => {
-      res.status(200).json(await Teams.getAll());
-    });
+    this.app.use(TeamsRoute);
+    // this.app.get('/teams', async (_req, res) => {
+    //   res.status(200).json(await Teams.getAll());
+    // });
 
     this.app.use(ErrorMiddleware);
   }
