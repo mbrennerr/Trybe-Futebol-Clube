@@ -2,6 +2,7 @@ import * as express from 'express';
 import ErrorMiddleware from './middlewares/ErrorMiddleware';
 import LoginRoute from './routes/LoginRoute';
 import TeamsRoute from './routes/TeamsRoute';
+import MatchesRoute from './routes/MatchesRoute';
 
 class App {
   public app: express.Express;
@@ -26,6 +27,7 @@ class App {
     this.app.use(express.json());
     this.app.use(LoginRoute);
     this.app.use(TeamsRoute);
+    this.app.use(MatchesRoute);
     // this.app.get('/teams', async (_req, res) => {
     //   res.status(200).json(await Teams.getAll());
     // });
