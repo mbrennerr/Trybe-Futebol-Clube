@@ -1,0 +1,20 @@
+import { sign, verify, SignOptions } from 'jsonwebtoken';
+import Users from '../database/models/Users';
+
+// const JWT_SECRET = readFileSync;
+const JWT_OPTIONS:SignOptions = {
+  algorithm: 'HS256',
+  expiresIn: '15m',
+};
+
+export default class AuthService {
+  constructor(private userModel = Users) {}
+
+  async authenticate(email:string, pass:string):Promise<string | null > {
+    const findUser = await this.userModel.findOne({ where: { email } });
+    if (!findUser || findUser.password !== pass) {
+      return { status: 404, message: 'User not found' };
+    }
+    return '';
+  }
+}
