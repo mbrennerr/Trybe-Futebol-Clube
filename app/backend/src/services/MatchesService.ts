@@ -14,8 +14,8 @@ export default class MatchesService {
   public async findAllMatches() {
     const matches = await this.matchModel
       .findAll({ include: [
-        { model: this.teamsModel, as: 'homeTeams', attributes: { exclude: ['id'] } },
-        { model: this.teamsModel, as: 'awayTeams', attributes: { exclude: ['id'] } },
+        { model: this.teamsModel, as: 'teamHome', attributes: { exclude: ['id'] } },
+        { model: this.teamsModel, as: 'teamAway', attributes: { exclude: ['id'] } },
       ] });
     return matches;
   }
