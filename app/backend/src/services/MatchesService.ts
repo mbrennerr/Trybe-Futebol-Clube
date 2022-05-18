@@ -19,4 +19,13 @@ export default class MatchesService {
       ] });
     return matches;
   }
+
+  public async findByQuery(inProgress:boolean) {
+    const batata = await this.matchModel.findAll({ where: { inProgress },
+      include: [
+        { model: this.teamsModel, as: 'teamHome', attributes: { exclude: ['id'] } },
+        { model: this.teamsModel, as: 'teamAway', attributes: { exclude: ['id'] } },
+      ] });
+    return batata;
+  }
 }
