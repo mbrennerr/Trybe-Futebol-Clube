@@ -16,7 +16,7 @@ export default (err:Error, _req:Request, res:Response, _next:NextFunction) => {
   const status:number = ErrorMap[name];
   console.log('Middleware', err);
   if (!status) {
-    return res.status(500).json({ message: 'Server error' });
+    return res.status(500).json({ message: err.message });
   }
   res.status(status).json({ message: err.message });
 };
