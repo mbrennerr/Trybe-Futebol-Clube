@@ -1,5 +1,6 @@
 import Matches from '../database/models/Matches';
 import Teams from '../database/models/teams';
+import { IMatch } from '../Types';
 
 export default class MatchesService {
   private matchModel;
@@ -27,5 +28,22 @@ export default class MatchesService {
         { model: this.teamsModel, as: 'teamAway', attributes: { exclude: ['id'] } },
       ] });
     return batata;
+  }
+
+  public async saveMatch(match:IMatch) {
+    const { homeTeam, awayTeam } = match;
+    const checkHomeTeam = await this.teamsModel.findOne({ where: { id: homeTeam } });
+    const checkAwayTeam = await this.teamsModel.findOne({ where: { id: awayTeam } });
+
+    const result = { error: false, message: '', result: {} };
+    if (!checkHomeTeam || !checkAwayTeam) {
+      result.error = true;
+      result.message = 'There is no team with such id!';
+    } else {
+      const postMatch = await this.matchModel.create({ ...match });
+      result.result = postMatch;
+    }
+
+    return result;
   }
 }
