@@ -27,4 +27,23 @@ export default class MatchesController {
       return next(error);
     }
   };
+
+  public postMatch = async (req:Request, res:Response, next:NextFunction) => {
+    try {
+      console.log('postMatch', req.body);
+      const match = req.body;
+
+      if (match.homeTeam === match.awayTeam) {
+        return res.status(401).json({
+          message: 'It is not possible to create a match with two equal teams',
+        });
+      }
+      const saveMatch = await this.matchesService.saveMatch(match);
+      return saveMatch.error
+        ? res.status(404).json({ message: saveMatch.message })
+        : res.status(201).json(saveMatch.result);
+    } catch (error) {
+      return next(error);
+    }
+  };
 }
