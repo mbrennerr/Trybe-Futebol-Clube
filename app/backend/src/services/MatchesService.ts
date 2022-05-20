@@ -46,4 +46,14 @@ export default class MatchesService {
 
     return result;
   }
+
+  public async finishMatch(id: string) {
+    const match = await this.matchModel.findOne({ where: { id } });
+    const update = await this.matchModel.update(
+      { inProgress: !match?.inProgress },
+      { where: { id } },
+    );
+    console.log('finishMatch.service', update);
+    return update;
+  }
 }
