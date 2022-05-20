@@ -7,4 +7,5 @@ const controller = new MatchesController();
 
 router.get('/matches', controller.getAllMatches);
 router.post('/matches', Validate.Token, controller.postMatch);
+router.patch('/matches/:id/finish', controller.finishMatch);
 export default router;
