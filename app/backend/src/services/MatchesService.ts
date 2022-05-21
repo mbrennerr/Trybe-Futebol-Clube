@@ -56,4 +56,16 @@ export default class MatchesService {
     console.log('finishMatch.service', update);
     return update;
   }
+
+  public async updateMatchGoals(id: string, homeTeamGoals:number, awayTeamGoals:number) {
+    await this.matchModel.update(
+      { homeTeamGoals,
+        awayTeamGoals },
+      { where: { id } },
+    );
+
+    const updatedMatch = await this.matchModel.findOne({ where: { id } });
+    return { homeTeamGoals: updatedMatch?.homeTeamGoals,
+      awayTeamGoals: updatedMatch?.awayTeamGoals };
+  }
 }
