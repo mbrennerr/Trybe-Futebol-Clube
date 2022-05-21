@@ -56,4 +56,15 @@ export default class MatchesController {
       next(error);
     }
   };
+
+  public updateMatch = async (req:Request, res:Response, next:NextFunction) => {
+    try {
+      const { id } = req.params;
+      const { homeTeamGoals, awayTeamGoals } = req.body;
+      const Placar = await this.matchesService.updateMatchGoals(id, homeTeamGoals, awayTeamGoals);
+      return res.status(200).json({ Placar });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
