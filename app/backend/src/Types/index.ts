@@ -4,6 +4,7 @@ import IUsers from './IUsers';
 import IErrorMap from './IErrorMap';
 import ILogin from './ILogin';
 import IToken from './IToken';
+import ILeaderBoard from './ILeaderBoard';
 
 export {
   ITeams,
@@ -13,4 +14,5 @@ export {
   ILogin,
   IToken,
   IMatch,
+  ILeaderBoard,
 };
