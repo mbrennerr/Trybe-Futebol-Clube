@@ -1,5 +1,5 @@
 export default interface ILeaderBoard {
-  teamName: string;
+  teamName?: string;
   totalPoints: number;
   totalGames: number;
   totalVictories: number;
