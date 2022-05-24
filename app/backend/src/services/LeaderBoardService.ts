@@ -15,8 +15,20 @@ export default class LeaderBoardService {
   public static shapeTeamHome(team:ITeams) {
     const result = {
       name: LeaderBoardService.createName(team),
-      totalGames: LeaderBoardService.createTotalGames(team),
+      totalGames: LeaderBoardService.createTotalGamesHome(team),
       ...LeaderBoardService.getTotalMatchesHome(team),
+
+    };
+    const goalsBalance = result.goalsFavor - result.goalsOwn;
+    const efficiency = Number(((result.totalPoints / (result.totalGames * 3)) * 100).toFixed(2));
+    return { ...result, goalsBalance, efficiency };
+  }
+
+  public static shapeTeamAway(team:ITeams) {
+    const result = {
+      name: LeaderBoardService.createName(team),
+      totalGames: LeaderBoardService.createTotalGamesAway(team),
+      ...LeaderBoardService.getTotalMatchesAway(team),
 
     };
     const goalsBalance = result.goalsFavor - result.goalsOwn;
@@ -26,10 +38,20 @@ export default class LeaderBoardService {
 
   async getLeaderBoardHome() {
     const team = await this.teamsModel.findAll({ include: [
-      { model: this.matchModel, as: 'teamHome', attributes: { exclude: ['id'] } },
-      { model: this.matchModel, as: 'teamAway', attributes: { exclude: ['id'] } },
+      { model: this.matchModel, as: 'teamHome', where: { inProgress: false } },
+      { model: this.matchModel, as: 'teamAway', where: { inProgress: false } },
     ] });
     const leaderBoard = Array.from(team, LeaderBoardService.shapeTeamHome);
+    console.log(team);
+    return LeaderBoardService.sort(leaderBoard);
+  }
+
+  async getLeaderBoardAway() {
+    const team = await this.teamsModel.findAll({ include: [
+      { model: this.matchModel, as: 'teamHome', where: { inProgress: false } },
+      { model: this.matchModel, as: 'teamAway', where: { inProgress: false } },
+    ] });
+    const leaderBoard = Array.from(team, LeaderBoardService.shapeTeamAway);
     console.log(team);
     return LeaderBoardService.sort(leaderBoard);
   }
@@ -39,8 +61,13 @@ export default class LeaderBoardService {
     return teamName;
   }
 
-  private static createTotalGames(team:ITeams) {
+  private static createTotalGamesHome(team:ITeams) {
     const games = team.teamHome?.length;
+    return games as number;
+  }
+
+  private static createTotalGamesAway(team:ITeams) {
+    const games = team.teamAway?.length;
     return games as number;
   }
 
@@ -58,6 +85,28 @@ export default class LeaderBoardService {
       result.goalsOwn += match.awayTeamGoals;
       if (match.homeTeamGoals > match.awayTeamGoals) result.totalVictories += 1;
       else if (match.homeTeamGoals < match.awayTeamGoals)result.totalLosses += 1;
+      else result.totalDraws += 1;
+    });
+
+    const totalPoints = (result.totalVictories * 3) + result.totalDraws;
+
+    return { ...result, totalPoints };
+  }
+
+  private static getTotalMatchesAway(teams:ITeams) {
+    const result = {
+      goalsFavor: 0,
+      goalsOwn: 0,
+      totalVictories: 0,
+      totalDraws: 0,
+      totalLosses: 0,
+    };
+
+    teams.teamAway?.forEach((match) => {
+      result.goalsFavor += match.awayTeamGoals;
+      result.goalsOwn += match.homeTeamGoals;
+      if (match.awayTeamGoals > match.homeTeamGoals) result.totalVictories += 1;
+      else if (match.awayTeamGoals < match.homeTeamGoals)result.totalLosses += 1;
       else result.totalDraws += 1;
     });
 
