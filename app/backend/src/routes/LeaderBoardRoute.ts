@@ -5,4 +5,5 @@ const router:Router = Router();
 const controller = new LeaderBoardController();
 
 router.get('/leaderboard/home', controller.getLeaderboardHome);
+router.get('/leaderboard/away', controller.getLeaderBoardAway);
 export default router;
