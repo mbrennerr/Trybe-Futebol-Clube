@@ -26,4 +26,13 @@ export default class LeaderBoardController {
       next(error);
     }
   };
+
+  public getLeaderBoardGeneral = async (_req:Request, res:Response, next:NextFunction) => {
+    try {
+      const leaderBoard = await this.leaderBoardService.getLeaderBoardGeneral();
+      return res.status(200).json(leaderBoard);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
