@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { ITeams } from '../Types';
 import Matches from '../database/models/Matches';
 import Teams from '../database/models/teams';
@@ -36,6 +37,18 @@ export default class LeaderBoardService {
     return { ...result, goalsBalance, efficiency };
   }
 
+  public static shapeTeamGeneral(team:ITeams) {
+    const result = {
+      name: LeaderBoardService.createName(team),
+      totalGames: LeaderBoardService.createTotalGamesGeneral(team),
+      ...LeaderBoardService.getTotalMatchesGeneral(team),
+
+    };
+    const goalsBalance = result.goalsFavor - result.goalsOwn;
+    const efficiency = Number(((result.totalPoints / (result.totalGames * 3)) * 100).toFixed(2));
+    return { ...result, goalsBalance, efficiency };
+  }
+
   async getLeaderBoardHome() {
     const team = await this.teamsModel.findAll({ include: [
       { model: this.matchModel, as: 'teamHome', where: { inProgress: false } },
@@ -56,6 +69,16 @@ export default class LeaderBoardService {
     return LeaderBoardService.sort(leaderBoard);
   }
 
+  async getLeaderBoardGeneral() {
+    const team = await this.teamsModel.findAll({ include: [
+      { model: this.matchModel, as: 'teamHome', where: { inProgress: false } },
+      { model: this.matchModel, as: 'teamAway', where: { inProgress: false } },
+    ] });
+    const leaderBoard = Array.from(team, LeaderBoardService.shapeTeamGeneral);
+    console.log(team);
+    return LeaderBoardService.sort(leaderBoard);
+  }
+
   private static createName(team:ITeams) {
     const { teamName } = team;
     return teamName;
@@ -69,6 +92,13 @@ export default class LeaderBoardService {
   private static createTotalGamesAway(team:ITeams) {
     const games = team.teamAway?.length;
     return games as number;
+  }
+
+  private static createTotalGamesGeneral(team:ITeams) {
+    const totalGameHome = LeaderBoardService.createTotalGamesHome(team);
+    const totalGameAway = LeaderBoardService.createTotalGamesAway(team);
+    const Totalgames = totalGameHome + totalGameAway;
+    return Totalgames as number;
   }
 
   private static getTotalMatchesHome(teams:ITeams) {
@@ -113,6 +143,20 @@ export default class LeaderBoardService {
     const totalPoints = (result.totalVictories * 3) + result.totalDraws;
 
     return { ...result, totalPoints };
+  }
+
+  private static getTotalMatchesGeneral(teams:ITeams) {
+    const matchHome = LeaderBoardService.getTotalMatchesHome(teams);
+    const matchAway = LeaderBoardService.getTotalMatchesAway(teams);
+    const general = {
+      totalPoints: matchHome.totalPoints + matchAway.totalPoints,
+      goalsFavor: matchHome.goalsFavor + matchAway.goalsFavor,
+      goalsOwn: matchHome.goalsOwn + matchAway.goalsOwn,
+      totalVictories: matchHome.totalVictories + matchAway.totalVictories,
+      totalDraws: matchHome.totalDraws + matchAway.totalDraws,
+      totalLosses: matchHome.totalLosses + matchAway.totalLosses,
+    };
+    return general;
   }
 
   private static sort(classification: any[]) {
