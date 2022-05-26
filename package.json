@@ -13,7 +13,8 @@
     "compose:up": "(cd app && docker-compose up -d --build)",
     "compose:down": "(cd app && docker-compose down --remove-orphans)",
     "compose:sobe": "(cd app && docker compose up -d --build)",
-    "compose:baixa": "(cd app && docker compose down --remove-orphans)"
+    "compose:baixa": "(cd app && docker compose down --remove-orphans)",
+    "compose:refresh": "npm run compose:baixa && npm run compose:sobe"
   },
   "author": "Trybe",
   "devDependencies": {
