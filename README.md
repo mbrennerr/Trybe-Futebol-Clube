@@ -6,7 +6,7 @@ O `TFC` é um site informativo sobre partidas e classificações de futebol! ⚽
 <br>
 Obs: O frontEnd foi desenvolvido e disponibilizado pela Trybe, o projeto visava a implementação do backend;
 
-Eesse projeto visava, construir **um back-end dockerizado utilizando modelagem de dados através do equelize**. 
+O projeto visava, construir **um back-end dockerizado utilizando modelagem de dados através do equelize**. 
 
  - Realizar a dockerização dos apps, network, volume e compose;
  - Modelar dados com **MySQL** através do **Sequelize**;
