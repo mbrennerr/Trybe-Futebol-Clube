@@ -1,5 +1,7 @@
 # Habilidades
 
+[![wakatime](https://wakatime.com/badge/user/c51d3e12-1f4e-41d7-8b6f-ffefba47955a/project/fb9e632f-aa4e-4849-823e-29367f7246ea.svg)](https://wakatime.com/badge/user/c51d3e12-1f4e-41d7-8b6f-ffefba47955a/project/fb9e632f-aa4e-4849-823e-29367f7246ea)
+
 ![Exemplo app front](assets/front-example.png)
 
 O `TFC` é um site informativo sobre partidas e classificações de futebol! ⚽️
